@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${alegreya.variable} ${playfairDisplay.variable} ${lora.variable} antialiased h-screen w-screen`}
+        className={`${alegreya.variable} ${playfairDisplay.variable} ${lora.variable} antialiased h-screen `}
       >
         {children}
       </body>

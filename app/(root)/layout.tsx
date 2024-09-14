@@ -7,7 +7,7 @@ export default async function layout({
   children: React.ReactNode;
 }) {
   return (
-    <main>
+    <main >
       <Header />
       {children}
       <Footer />

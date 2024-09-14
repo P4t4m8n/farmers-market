@@ -41,14 +41,14 @@ export default function ProductPreview({ product, index }: Props) {
   return (
     <li
       ref={ref}
-      className={`w-60 p-4 border rounded-md overflow-hidden shadow-md relative opacity-0 flex flex-col gap-2 group hover:cursor-pointer hover:bg-light_yellow transition-colors duration-300 ${
+      className={`w-72 p-4 border rounded-md overflow-hidden shadow-md relative opacity-0 flex flex-col gap-2 group hover:cursor-pointer hover:bg-light_yellow transition-colors duration-300 ${
         isVisible ? "animate-slide-in-left" : ""
       }`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <Image
-        width={206}
-        height={206}
+        width={360}
+        height={360}
         src={imgUrl || "/home.jpg"}
         alt={name}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

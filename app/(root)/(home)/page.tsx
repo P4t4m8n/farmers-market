@@ -25,7 +25,7 @@ export default async function Home() {
       </div>
 
       {/* Main Content */}
-      <main className="py-8 h-[200rem]">
+      <main className=" h-[200rem]">
         <ProductList products={seasonProducts} />
       </main>
     </>
