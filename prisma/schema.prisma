@@ -1,0 +1,101 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins", "omitApi"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enum definitions
+enum ProductType {
+  vegetable
+  fruit
+  herb
+  algae
+  other
+  fungi
+  root
+  legume
+  nut
+  spice
+}
+
+enum Season {
+  spring
+  summer
+  fall
+  winter
+  year_round
+}
+
+enum Quantity {
+  kg
+  g
+  unit
+  bunch
+}
+
+// Users table
+model User {
+  id            Int           @id @default(autoincrement())
+  name          String
+  email         String
+  userAddresses UserAddress[]
+  orders        Order[]
+}
+
+// UserAddresses table (One-to-Many with Users)
+model UserAddress {
+  id      Int    @id @default(autoincrement())
+  userId  Int
+  street  String
+  city    String
+  state   String
+  zipCode String
+  country String
+  user    User   @relation(fields: [userId], references: [id]) // Foreign Key
+}
+
+// Orders table (Many-to-One with Users)
+model Order {
+  id         Int         @id @default(autoincrement())
+  userId     Int
+  orderDate  String
+  totalPrice Int
+  user       User        @relation(fields: [userId], references: [id]) // Foreign Key
+  orderItems OrderItem[] // One-to-Many relationship with OrderItems
+}
+
+// Products table
+model Product {
+  id            Int         @id @default(autoincrement())
+  name          String      @default("Unknown")
+  imgUrl        String      @default("")
+  price         Int         @default(5)
+  family        String     @default("")
+  season        Season      @default(year_round)
+  type          ProductType @default(other)
+  description   String      @default("")
+  calories      Int         @default(0)
+  protein       Int         @default(0)
+  fat           Int         @default(0)
+  carbohydrates Int         @default(0)
+  fiber         Int         @default(0)
+  vitamins      String[]    @default([])
+  minerals      String[]    @default([])
+  orderItems    OrderItem[]
+}
+
+// OrderItems table (Many-to-Many relationship between Orders and Products)
+model OrderItem {
+  id        Int      @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Int
+  unit      Quantity
+  price     Int
+  order     Order    @relation(fields: [orderId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+}
