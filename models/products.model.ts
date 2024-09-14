@@ -1,10 +1,9 @@
-import { ProductType, Season } from "@prisma/client";
+import { ProductType, Quantity, Season } from "@prisma/client";
 
 export interface IProduct {
-  id: number;
+  id?: number;
   name: string;
   imgUrl: string;
-  price: number;
   season: Season;
   type: ProductType;
   family: string;
@@ -16,6 +15,16 @@ export interface IProduct {
   fiber: number;
   vitamins: string[];
   minerals: string[];
+  productQuantity: IProductQuantity[];
+}
+
+export interface IProductQuantity {
+  id?: number;
+  productId?: number;
+  unitQuantity?: number| null;
+  unitAmountType?: Quantity | null;
+  unit: Quantity;
+  price: number;
 }
 
 export type TProductFilter = {
@@ -26,4 +35,5 @@ export type TProductFilter = {
   sortOrder?: "asc" | "desc";
   page?: number;
   limit?: number;
+  season?: Season;
 };

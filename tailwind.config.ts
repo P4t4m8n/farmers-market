@@ -14,10 +14,30 @@ const config: Config = {
         light_green: "#C0C78C",
         green: "#A6B37D",
         light_yellow: "#FEFAE0",
-        brown: "B99470",
-        text_main: "#333333",
-        text_secondary: "#4E342E",
-        link: "001F3F",
+        brown: "#B99470",
+        title: "#557eaa",
+        main: "#333333",
+        secondary: "#4E342E",
+        link: "#001F3F",
+      },
+      fontFamily: {
+        title: ["var(--font-alegreya)", "serif"],
+        text: ["var(--font-lora)", "serif"],
+      },
+      keyframes: {
+        "slide-in-left": {
+          "0%": {
+            opacity: "0",
+            transform: "translateX(-1000px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateX(0)",
+          },
+        },
+      },
+      animation: {
+        "slide-in-left": "slide-in-left 0.5s forwards",
       },
     },
   },

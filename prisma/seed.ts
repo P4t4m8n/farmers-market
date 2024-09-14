@@ -1,6 +1,7 @@
-import { createProduct, queryProducts } from "@/lib/actions/product.actions";
+import { createProduct } from "@/lib/actions/product.actions";
 import { fruits_veggies_data, fruits_veggies_img } from "./data";
 import { ProductType, Season } from "@prisma/client";
+import { IProductQuantity } from "@/models/products.model";
 
 export const seed = async () => {
   const promises = fruits_veggies_data.map((product) => {
@@ -8,18 +9,23 @@ export const seed = async () => {
       fruits_veggies_img.find((img) => img.name === product.name)?.imageUrl ||
       "";
     const { season, type } = product;
+    const productQuantity: IProductQuantity = {
+      unit: "kg",
+      price: getRandomPrice(),
+      unitQuantity: 1,
+    };
+
     createProduct({
       ...product,
       imgUrl,
       season: season as Season,
       type: type as ProductType,
-      price: getRandomPrice(),
+      productQuantity: [productQuantity],
     });
   });
   await Promise.all(promises);
-  const products = await queryProducts({});
   console.log("seeded");
-  return products;
+  return;
 };
 
 export const getRandomPrice = (min = 0.99, max = 99.99) => {

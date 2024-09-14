@@ -70,22 +70,32 @@ model Order {
 
 // Products table
 model Product {
-  id            Int         @id @default(autoincrement())
-  name          String      @default("Unknown")
-  imgUrl        String      @default("")
-  price         Int         @default(5)
-  family        String     @default("")
-  season        Season      @default(year_round)
-  type          ProductType @default(other)
-  description   String      @default("")
-  calories      Int         @default(0)
-  protein       Int         @default(0)
-  fat           Int         @default(0)
-  carbohydrates Int         @default(0)
-  fiber         Int         @default(0)
-  vitamins      String[]    @default([])
-  minerals      String[]    @default([])
-  orderItems    OrderItem[]
+  id              Int               @id @default(autoincrement())
+  name            String            @default("Unknown")
+  imgUrl          String            @default("")
+  family          String            @default("")
+  season          Season            @default(year_round)
+  type            ProductType       @default(other)
+  description     String            @default("")
+  calories        Int               @default(0)
+  protein         Int               @default(0)
+  fat             Int               @default(0)
+  carbohydrates   Int               @default(0)
+  fiber           Int               @default(0)
+  vitamins        String[]          @default([])
+  minerals        String[]          @default([])
+  orderItems      OrderItem[]
+  productQuantity ProductQuantity[]
+}
+
+model ProductQuantity {
+  id             Int       @id @default(autoincrement())
+  productId      Int
+  unitQuantity   Int?
+  price          Int       @default(5)
+  unitAmountType Quantity?
+  unit           Quantity
+  product        Product   @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 // OrderItems table (Many-to-Many relationship between Orders and Products)
