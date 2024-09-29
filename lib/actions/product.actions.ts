@@ -11,7 +11,7 @@ export const queryProducts = async ({
   sortOrder = "asc",
   page = 1,
   season,
-  limit = 200,
+  limit = 15,
 }: TProductFilter): Promise<IProduct[]> => {
   try {
     const offset = (page - 1) * limit;

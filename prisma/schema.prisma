@@ -13,13 +13,11 @@ enum ProductType {
   vegetable
   fruit
   herb
-  algae
-  other
-  fungi
   root
   legume
   nut
   spice
+  other
 }
 
 enum Season {
@@ -76,6 +74,7 @@ model Product {
   family          String            @default("")
   season          Season            @default(year_round)
   type            ProductType       @default(other)
+  subType         String            @default("other")
   description     String            @default("")
   calories        Int               @default(0)
   protein         Int               @default(0)

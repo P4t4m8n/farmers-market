@@ -1,4 +1,4 @@
-"use client"; // Marks this as a client component
+"use client"; 
 
 import { useEffect, useRef, useState } from "react";
 import { IProduct } from "@/models/products.model";
@@ -41,8 +41,8 @@ export default function ProductPreview({ product, index }: Props) {
   return (
     <li
       ref={ref}
-      className={`w-72 p-4 border rounded-md overflow-hidden shadow-md relative opacity-0 flex flex-col gap-2 group hover:cursor-pointer hover:bg-light_yellow transition-colors duration-300 ${
-        isVisible ? "animate-slide-in-left" : ""
+      className={`w-72 p-4 z-0 border rounded-md overflow-hidden shadow-md  slide-in  flex flex-col gap-2 group hover:cursor-pointer hover:bg-light_yellow transition-colors duration-300 ${
+        isVisible ? "" : ""
       }`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >

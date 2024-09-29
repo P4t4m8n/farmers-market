@@ -1,4 +1,5 @@
-import { Season } from "@prisma/client";
+import { IModelItems } from "@/models/app.model";
+import { ProductType, Season } from "@prisma/client";
 
 export const getCurrentSeason = (
   hemisphere: "northern" | "southern" = "northern"
@@ -32,3 +33,6 @@ export const getCurrentSeason = (
 
   return season;
 };
+
+
+export const getNavModelItems = (itemType:ProductType):IModelItems=>{}
